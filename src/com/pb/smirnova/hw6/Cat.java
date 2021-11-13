@@ -4,13 +4,21 @@ import java.util.Objects;
 
 public class Cat extends Animal{
 
-    public Cat (String location, String food) {
-        super(location, food);
+    private String color;
+
+    public Cat(String name, String color) {
+        super(name);
+        this.color = color;
     }
 
-    public Cat() {
-        super("Кот", "рыбку", "главном доме", 3);
+    public String getColor() {
+        return color;
     }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
 
     @Override
     public void makeNoise() {
@@ -26,7 +34,7 @@ public class Cat extends Animal{
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(super.hashCode(), color);
     }
 
     @Override
@@ -34,12 +42,16 @@ public class Cat extends Animal{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cat cat = (Cat) o;
-        return  Objects.equals(getLocation(), cat.getLocation()) && Objects.equals(getFood(), cat.getFood()) && Objects.equals( weight, cat.weight);
+        return  Objects.equals(getLocation(), cat.getLocation()) && Objects.equals(getFood(), cat.getFood()) && Objects.equals( color, cat.color);
     }
 
     @Override
     public String toString() {
         return "Cat{'" + getName() + '\'' +
-                ", вес: " + weight + '}';
+                " ест '" + getFood() + '\'' +
+                ", живет в '" + getLocation() + '\'' +
+                ", цвет: '" + color + '\'' +
+                ", вес: " + weight +
+                '}';
     }
 }
